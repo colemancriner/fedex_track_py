@@ -1,0 +1,2 @@
+# Ignore config files containing keyset (temporarily until environment variables)
+config*.py

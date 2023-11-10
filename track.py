@@ -19,6 +19,7 @@ class FedExClient:
         self.get_token()
 
     def get_token(self):
+        time.sleep(1.1) # Ensures rate limits are not reached
         if self.expires_at <= datetime.now():
             client_credentials = 'client_credentials'
             token_payload = {
@@ -35,7 +36,6 @@ class FedExClient:
             self.token = token_response['access_token']
             expires_in = token_response['expires_in']
             self.expires_at = datetime.now() + timedelta(seconds=int(expires_in)) - timedelta(seconds=2) # Subtracting 2sec to ensure token is not expired
-            time.sleep(1.1) # Ensures rate limits are not reached
 
         return self.token
 
